@@ -41,6 +41,7 @@
                     <td>{{boat.owner}}</td>
                     <td>
                        <button class="btn btn-outline-success" type="button" (click)="modifiyBoat(boat._id)">Modifiy</button>
+                       {{this.updateError}}
                    </td>
               </ng-template>
               <ng-template #elseBlock>
@@ -63,7 +64,8 @@
         <td><input (keyup)="onKeyWeight($event)" class="form-control" type="text" placeholder="Weight" value="{{this.inputWeight}}"></td>
         <td><input (keyup)="onKeyDate($event)" class="form-control" type="text" placeholder="Creation Date" value="{{this.inputCreationDate}}"></td>
         <td>Me</td>
-        <td><button class="btn btn-outline-success" type="button" (click)="addBoat($event)">Add</button></td>
+        <td><button class="btn btn-outline-success" type="button" (click)="addBoat($event)">Add</button>
+         {{this.addError}}</td>
       </tr>
 
 

@@ -25,6 +25,9 @@ export class AppComponent {
   currentIdUpdate:string = "";
   ifUpdate:boolean = false;
 
+  updateError:string="";
+  addError:string="";
+
   boats:Array<boat> = [];
 
   constructor(private boatService:BoatService) {
@@ -43,6 +46,16 @@ export class AppComponent {
   	  });
   }
 
+  private checkDatas(datas:boat):boolean{
+    // Can Add other check in the futur 
+
+
+    if(isNaN(Number(datas.weight)))
+      return false;
+
+    return true;
+  }
+
   private updateBoat(boat){
     this.currentIdUpdate = boat._id;
     this.ifUpdate = true;
@@ -54,15 +67,19 @@ export class AppComponent {
 
   private modifiyBoat(id){
     let boat : boat = {name:this.inputNameUpdate,description:this.inputDescriUpdate,weight:this.inputWeightUpdate,date:this.inputCreationDateUpdate,owner:this.userName,_id:this.currentIdUpdate};
-      console.log(boat);
-
+    
+    if(this.checkDatas(boat)){
       this.boatService.updatedBoat(boat).subscribe(info => {
             console.log(info);
             //Update List
             this.getAllBoats();
             //Flush Old Data
             this.ifUpdate = false;
+            this.updateError = "";
   	  });
+    }else{
+        this.updateError = "Invalid Inputs";
+    }
   }
 
   private deleteBoat(id){
@@ -110,6 +127,7 @@ export class AppComponent {
       //Delete this entry for the database
       delete boat._id;
 
+      if(this.checkDatas(boat)){
       this.boatService.addBoats(boat).subscribe(info => {
   		      console.log(info);
             //Update List
@@ -119,7 +137,11 @@ export class AppComponent {
             this.inputDescri= "";
             this.inputWeight = "";
             this.inputCreationDate= "";
+            this.addError = "";
   	  });
+      }else{
+        this.addError = "Invalid Inputs";
+    }
 
   }
   
