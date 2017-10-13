@@ -6,7 +6,7 @@ var boatModel = function() {
 	var boatSchema = mongoose.Schema({
 		name: String,
 		description: String,
-		weight: Number,
+		weight: String,
 		date: String,
 		owner: String,
 	});

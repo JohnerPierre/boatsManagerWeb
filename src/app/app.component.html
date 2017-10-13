@@ -33,19 +33,22 @@
       <tr *ngFor="let boat of boats">
          <td>{{boat.name}}</td>
          <td>{{boat.description}}</td>
-         <td>{{boat.wight}}</td>
+         <td>{{boat.weight}}</td>
          <td>{{boat.date}}</td>
          <td>{{boat.owner}}</td>
-         <td></td>
+         <td>
+            <button class="btn btn-outline-success" type="button" (click)="update()">Update</button>
+            <button class="btn btn-outline-success" type="button" (click)="delete()">Delete</button>
+         </td>
       </tr>
 
       <tr>
-        <td><input class="form-control" type="text" placeholder="Name"></td>
-        <td><input class="form-control" type="text" placeholder="Description"></td>
-        <td><input class="form-control" type="text" placeholder="Weight"></td>
-        <td><input class="form-control" type="text" placeholder="Creation Date"></td>
+        <td><input (keyup)="onKeyName($event)" class="form-control" type="text" placeholder="Name"></td>
+        <td><input (keyup)="onKeyDescri($event)" class="form-control" type="text" placeholder="Description"></td>
+        <td><input (keyup)="onKeyWeight($event)" class="form-control" type="text" placeholder="Weight"></td>
+        <td><input (keyup)="onKeyDate($event)" class="form-control" type="text" placeholder="Creation Date"></td>
         <td>Me</td>
-        <td><button class="btn btn-outline-success" type="button" (click)="test()">Add</button></td>
+        <td><button class="btn btn-outline-success" type="button" (click)="addBoat($event)">Add</button></td>
       </tr>
 
 

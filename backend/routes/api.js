@@ -44,17 +44,17 @@ app.delete('/book', function(req, res) {
 app.post('/book', function(req, res) {
 	var bookData = req.body.bookData;
 	var book = new Book(bookData);
-	book.save(function(err, createdBookObject) {
+	book.save(function(err, createdBoatObject) {
 		if(err) {
 			res.send({
 				success: false,
-				message: "Book not added"
+				message: "Boat not added"
 			});
 		} else {
 			res.send({
 				success: true,
-				message: "Book successfully added",
-				book: createdBookObject
+				message: "Boat successfully added",
+				book: createdBoatObject
 			});
 		}
 	});
