@@ -26,7 +26,6 @@ export class BoatService {
 
   deletedBoatById(id) {
     let searchUrl = "http://localhost:5000/book?bookId=" + id;
-    console.log(id);
     return this.http.delete(searchUrl).map(res => res.json());
   }
 

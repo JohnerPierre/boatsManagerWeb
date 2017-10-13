@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BoatService } from './services/boat.service';
  
 
- interface boat {name: string, description: string, weight: string, date: string, owner: string};
+ interface boat {name: string, description: string, weight: string, date: string, owner: string, _id: string};
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,14 @@ export class AppComponent {
   inputDescri:string = "";
   inputWeight:string = "";
   inputCreationDate:string = "";
+
+  inputNameUpdate:string = "";
+  inputDescriUpdate:string = "";
+  inputWeightUpdate:string = "";
+  inputCreationDateUpdate:string = "";
+
+  currentIdUpdate:string = "";
+  ifUpdate:boolean = false;
 
   boats:Array<boat> = [];
 
@@ -32,43 +40,85 @@ export class AppComponent {
       this.boatService.getAllBoats().subscribe(boatsList => {
             
             boatsList.map(item => this.boats.push(item));
-  		      //console.log(boatsList);
   	  });
   }
 
-  private deleteBoat(event){
+  private updateBoat(boat){
+    this.currentIdUpdate = boat._id;
+    this.ifUpdate = true;
+    this.inputNameUpdate = boat.name;
+    this.inputDescriUpdate = boat.description;
+    this.inputWeightUpdate = boat.weight;
+    this.inputCreationDateUpdate = boat.date;
+  }
+
+  private modifiyBoat(id){
+    let boat : boat = {name:this.inputNameUpdate,description:this.inputDescriUpdate,weight:this.inputWeightUpdate,date:this.inputCreationDateUpdate,owner:this.userName,_id:this.currentIdUpdate};
+      console.log(boat);
+
+      this.boatService.updatedBoat(boat).subscribe(info => {
+            console.log(info);
+            //Update List
+            this.getAllBoats();
+            //Flush Old Data
+            this.ifUpdate = false;
+  	  });
+  }
+
+  private deleteBoat(id){
+    this.boatService.deletedBoatById(id).subscribe(result => {
+  		if(result.success) {
+        console.log(result)
+        this.getAllBoats();      
+      } else {
+        alert("Book not successfully deleted");
+      }
+  	});
   }
 
   private onKeyName(event){
-    this.inputName = event.target.value;
-    //console.log(this.inputName);
+    if(!this.ifUpdate)
+      this.inputName = event.target.value;
+    else
+      this.inputNameUpdate = event.target.value;
   }
 
   private onKeyDescri(event){
-    this.inputDescri = event.target.value;
-    //console.log(this.inputDescri);
+    if(!this.ifUpdate)
+      this.inputDescri = event.target.value;
+    else
+      this.inputDescriUpdate = event.target.value;
   }
 
   private onKeyWeight(event){
-    this.inputWeight = event.target.value;
-    //console.log(this.inputWeight);
+    if(!this.ifUpdate)
+      this.inputWeight = event.target.value;
+    else
+      this.inputWeightUpdate = event.target.value;
   }
 
-  private onKeyDate(event){
-    this.inputCreationDate = event.target.value;
-    //console.log(this.inputCreationDate);
+  private onKeyDate(event){ 
+    if(!this.ifUpdate)
+      this.inputCreationDate = event.target.value;
+    else
+      this.inputCreationDateUpdate = event.target.value;
   }
-
 
   private addBoat(event){
       
-      let boat : boat = {name:this.inputName,description:this.inputDescri,weight:this.inputWeight.toString(),date:this.inputCreationDate,owner:this.userName};
-      console.log(boat);
+      let boat : boat = {name:this.inputName,description:this.inputDescri,weight:this.inputWeight.toString(),date:this.inputCreationDate,owner:this.userName,_id:""};
+      //Delete this entry for the database
+      delete boat._id;
 
       this.boatService.addBoats(boat).subscribe(info => {
-  		      //console.log(info);
+  		      console.log(info);
             //Update List
             this.getAllBoats();
+            //Flush Old Data
+            this.inputName= "";
+            this.inputDescri= "";
+            this.inputWeight = "";
+            this.inputCreationDate= "";
   	  });
 
   }

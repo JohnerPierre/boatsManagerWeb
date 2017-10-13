@@ -31,22 +31,37 @@
     <tbody>
 
       <tr *ngFor="let boat of boats">
-         <td>{{boat.name}}</td>
-         <td>{{boat.description}}</td>
-         <td>{{boat.weight}}</td>
-         <td>{{boat.date}}</td>
-         <td>{{boat.owner}}</td>
-         <td>
-            <button class="btn btn-outline-success" type="button" (click)="update()">Update</button>
-            <button class="btn btn-outline-success" type="button" (click)="delete()">Delete</button>
-         </td>
+         
+           <div *ngIf="this.ifUpdate && boat._id == this.currentIdUpdate; then thenBlock else elseBlock"></div>
+              <ng-template #thenBlock>
+                    <td> <input (keyup)="onKeyName($event)" class="form-control" type="text" placeholder="Name" value="{{boat.name}}"></td>
+                    <td><input (keyup)="onKeyDescri($event)" class="form-control" type="text" placeholder="Description" value="{{boat.description}}"></td>
+                    <td><input (keyup)="onKeyWeight($event)" class="form-control" type="text" placeholder="Weight" value="{{boat.weight}}"></td>
+                    <td><input (keyup)="onKeyDate($event)" class="form-control" type="text" placeholder="Creation Date" value="{{boat.date}}"></td>
+                    <td>{{boat.owner}}</td>
+                    <td>
+                       <button class="btn btn-outline-success" type="button" (click)="modifiyBoat(boat._id)">Modifiy</button>
+                   </td>
+              </ng-template>
+              <ng-template #elseBlock>
+                    <td>{{boat.name}}</td>
+                    <td>{{boat.description}}</td>
+                    <td>{{boat.weight}}</td>
+                    <td>{{boat.date}}</td>
+                    <td>{{boat.owner}}</td>
+                    <td>
+                       <button class="btn btn-outline-success" type="button" (click)="updateBoat(boat)">Update</button>
+                       <button class="btn btn-outline-success" type="button" (click)="deleteBoat(boat._id)">Delete</button>
+                   </td>
+              </ng-template>
+         
       </tr>
 
       <tr>
-        <td><input (keyup)="onKeyName($event)" class="form-control" type="text" placeholder="Name"></td>
-        <td><input (keyup)="onKeyDescri($event)" class="form-control" type="text" placeholder="Description"></td>
-        <td><input (keyup)="onKeyWeight($event)" class="form-control" type="text" placeholder="Weight"></td>
-        <td><input (keyup)="onKeyDate($event)" class="form-control" type="text" placeholder="Creation Date"></td>
+        <td><input (keyup)="onKeyName($event)" class="form-control" type="text" placeholder="Name" value="{{this.inputName}}"></td>
+        <td><input (keyup)="onKeyDescri($event)" class="form-control" type="text" placeholder="Description" value="{{this.inputDescri}}"></td>
+        <td><input (keyup)="onKeyWeight($event)" class="form-control" type="text" placeholder="Weight" value="{{this.inputWeight}}"></td>
+        <td><input (keyup)="onKeyDate($event)" class="form-control" type="text" placeholder="Creation Date" value="{{this.inputCreationDate}}"></td>
         <td>Me</td>
         <td><button class="btn btn-outline-success" type="button" (click)="addBoat($event)">Add</button></td>
       </tr>

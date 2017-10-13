@@ -34,7 +34,7 @@ app.delete('/book', function(req, res) {
 		} else {
 			res.send({
 				success: true,
-				message: "Book successfully deleted",
+				message: "Book successfully deletedd",
 				id: book._id
 			});
 		}
@@ -46,6 +46,7 @@ app.post('/book', function(req, res) {
 	var book = new Book(bookData);
 	book.save(function(err, createdBoatObject) {
 		if(err) {
+			//console.log(err);
 			res.send({
 				success: false,
 				message: "Boat not added"
@@ -61,21 +62,18 @@ app.post('/book', function(req, res) {
 });
 
 app.put('/book', function(req, res) {
-	var bookData = req.body.bookData;
+	var boatData = req.body.bookData;
 
-	Book.findById(bookData.name, function(err, book) {
+	Book.findById(boatData._id, function(err, boat) {
 		if(err) {
 			res.send(err);
 		} else {
-			book.title = bookData.title;
-			book.author = bookData.author;
-			book.publisher = bookData.publisher;
-			book.price = bookData.price;
-			book.description = bookData.description;
-			book.category = bookData.category;
-			book.cover = bookData.cover;
+			boat.name = boatData.name;
+			boat.description = boatData.description;
+			boat.weight = boatData.weight;
+			boat.date = boatData.date;
 
-			book.save(function(err, book) {
+			boat.save(function(err, book) {
 				if(err) {
 					res.send(err);
 				} else {
