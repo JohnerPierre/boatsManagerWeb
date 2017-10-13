@@ -15,39 +15,39 @@ export class BoatService {
   }
 
   getAllBoats() {
-  	let searchUrl = "http://localhost:5000/books";
+  	let searchUrl = "http://localhost:5000/boats";
   	return this.http.get(searchUrl).map(res => res.json());
   }
 
   getdBoatById(id) {
-    let searchUrl = "http://localhost:5000/book?bookId=" + id;
+    let searchUrl = "http://localhost:5000/boat?boatId=" + id;
     return this.http.get(searchUrl).map(res => res.json());
   }
 
   deletedBoatById(id) {
-    let searchUrl = "http://localhost:5000/book?bookId=" + id;
+    let searchUrl = "http://localhost:5000/boat?boatId=" + id;
     return this.http.delete(searchUrl).map(res => res.json());
   }
 
-  addBoats(bookData) {
-    let searchUrl = "http://localhost:5000/book";
+  addBoats(boatData) {
+    let searchUrl = "http://localhost:5000/boat";
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
     let options = new RequestOptions({
       headers: headers
     });
 
-    return this.http.post(searchUrl, JSON.stringify({ bookData: bookData }), options).map(res => res.json());
+    return this.http.post(searchUrl, JSON.stringify({ boatData: boatData }), options).map(res => res.json());
   }
 
-  updatedBoat(bookData) {
-    let searchUrl = "http://localhost:5000/book";
+  updatedBoat(boatData) {
+    let searchUrl = "http://localhost:5000/boat";
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
     let options = new RequestOptions({
       headers: headers
     });
 
-    return this.http.put(searchUrl, JSON.stringify({ bookData: bookData }), options).map(res => res.json());
+    return this.http.put(searchUrl, JSON.stringify({ boatData: boatData }), options).map(res => res.json());
   }
 }

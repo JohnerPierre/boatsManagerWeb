@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/ngBookStore");
+mongoose.connect("mongodb://localhost/ngBoat");
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection err'));

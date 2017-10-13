@@ -1,50 +1,49 @@
 var app = require('express')();
-var Book = require('../models/boatModel');
+var Boat = require('../models/boatModel');
 
-app.get('/books', function(req, res) {
+app.get('/boats', function(req, res) {
 
-	Book.find({}, function(err, books) {
+	Boat.find({}, function(err, boats) {
 		if(err) throw err;
 
-		res.send(books);
+		res.send(boats);
 	});
 });
 
-app.get('/book', function(req, res) {
-	var id = req.query.bookId;
+app.get('/boat', function(req, res) {
+	var id = req.query.boatId;
 
-	Book.find({ _id: id }, function(err, book) {
+	Boat.find({ _id: id }, function(err, boat) {
 		if(err) throw err;
 		
-		res.send(book[0]);
+		res.send(boat[0]);
 	});
 });
 
-app.delete('/book', function(req, res) {
-	var bookId = req.query.bookId;
-	console.log(bookId)
+app.delete('/boat', function(req, res) {
+	var boatId = req.query.boatId;
 
-	Book.findByIdAndRemove(bookId, function(err, book) {
+	Boat.findByIdAndRemove(boatId, function(err, boat) {
 		if(err) {
 			console.log(err);
 			res.send({
 				success: false,
-				message: "The request was not completed. Book with id " + book._id + " is not successfully deleted"
+				message: "boat with id " + boat._id + " is not successfully deleted"
 			});
 		} else {
 			res.send({
 				success: true,
-				message: "Book successfully deletedd",
-				id: book._id
+				message: "boat successfully deletedd",
+				id: boat._id
 			});
 		}
 	});
 });
 
-app.post('/book', function(req, res) {
-	var bookData = req.body.bookData;
-	var book = new Book(bookData);
-	book.save(function(err, createdBoatObject) {
+app.post('/boat', function(req, res) {
+	var boatData = req.body.boatData;
+	var boat = new Boat(boatData);
+	boat.save(function(err, createdBoatObject) {
 		if(err) {
 			//console.log(err);
 			res.send({
@@ -55,16 +54,16 @@ app.post('/book', function(req, res) {
 			res.send({
 				success: true,
 				message: "Boat successfully added",
-				book: createdBoatObject
+				boat: createdBoatObject
 			});
 		}
 	});
 });
 
-app.put('/book', function(req, res) {
-	var boatData = req.body.bookData;
+app.put('/boat', function(req, res) {
+	var boatData = req.body.boatData;
 
-	Book.findById(boatData._id, function(err, boat) {
+	Boat.findById(boatData._id, function(err, boat) {
 		if(err) {
 			res.send(err);
 		} else {
@@ -73,13 +72,13 @@ app.put('/book', function(req, res) {
 			boat.weight = boatData.weight;
 			boat.date = boatData.date;
 
-			boat.save(function(err, book) {
+			boat.save(function(err, boat) {
 				if(err) {
 					res.send(err);
 				} else {
 					res.send({
 						success: true,
-						message: "Book successfully updated"
+						message: "Boat successfully updated"
 					});
 				}
 			});

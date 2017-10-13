@@ -71,7 +71,7 @@ export class AppComponent {
         console.log(result)
         this.getAllBoats();      
       } else {
-        alert("Book not successfully deleted");
+        alert("Boat not successfully deleted");
       }
   	});
   }
