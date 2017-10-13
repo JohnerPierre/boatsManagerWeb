@@ -4,10 +4,8 @@
     <a class="navbar-brand" href="#">Boats List</a>
 
     <ng-template [ngIf]="this.ifLogin">
-      <p class="text-muted"> Hello, {{this.name}}</p>
-      <div class="form-inline">
-       
-      </div>
+      <button class="btn btn-outline-success inline" type="submit"> Hello, {{this.name}}</button>
+      <button class="btn btn-outline-success inline" (click)="logout($event)" type="submit">Logout</button>
     </ng-template>
 
     <ng-template [ngIf]="!this.ifLogin && this.ifRegister">

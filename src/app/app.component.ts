@@ -99,7 +99,10 @@ export class AppComponent {
      });
   }
 
-
+  private logout(){
+    this.ifLogin=false;
+    this.name="";
+  }
 
  
 }
