@@ -1,5 +1,6 @@
 var app = require('express')();
 var Boat = require('../models/boatModel');
+var User = require('../models/userModel');
 
 app.get('/boats', function(req, res) {
 
@@ -81,6 +82,57 @@ app.put('/boat', function(req, res) {
 						message: "Boat successfully updated"
 					});
 				}
+			});
+		}
+	});
+});
+
+app.get('/users', function(req, res) {
+
+	User.find({}, function(err, users) {
+		if(err) throw err;
+
+		res.send(users);
+	});
+});
+
+app.post('/user', function(req, res) {
+	var userData = req.body.userData;
+	var user = new User(userData);
+	user.save(function(err, createdUserObject) {
+		if(err) {
+			//console.log(err);
+			res.send({
+				success: false,
+				message: "User not added"
+			});
+		} else {
+			res.send({
+				success: true,
+				message: "User successfully added",
+				boat: createdUserObject
+			});
+		}
+	});
+});
+
+app.get('/userExist', function(req, res) {
+	var userName = req.query.userName;
+	console.log(userName);
+	User.find({ userName: userName }, function(err, user) {
+		console.log(user);
+		if(err) {
+			console.log(err);
+			res.send({
+				success: false,
+				message: "not successfully",
+				data: []
+			});
+		} else {
+			res.send({
+				success: true,
+				message: "successfully",
+				data: user
 			});
 		}
 	});

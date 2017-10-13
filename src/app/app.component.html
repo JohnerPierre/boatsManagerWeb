@@ -2,16 +2,36 @@
   <nav class="navbar navbar-inverse bg-inverse">
 
     <a class="navbar-brand" href="#">Boats List</a>
-    <a class="navbar-brand" href="#">Register</a>
 
-    <form class="form-inline">
-      <input class="form-control" type="text" placeholder="Login">
-      <input class="form-control" type="text" placeholder="PassWord">
-      <button class="btn btn-outline-success" type="submit">Login</button>
-    </form>
+    <ng-template [ngIf]="this.ifLogin">
+      <p class="text-muted"> Hello, {{this.name}}</p>
+      <div class="form-inline">
+       
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="!this.ifLogin && this.ifRegister">
+      <div class="form-inline">
+        <input (keyup)="onKeyName($event)" class="form-control inline" type="text" placeholder="Full Name">
+        <input (keyup)="onKeyPw($event)" class="form-control inline" type="password" placeholder="PassWord">
+        <input (keyup)="onKeyPw2($event)" class="form-control inline" type="password" placeholder="PassWord Check">
+        <input (keyup)="onKeyUserName($event)" class="form-control inline" type="text" placeholder="UserName">
+        <button class="btn btn-outline-success inline" (click)="addUser($event)" type="submit">Register</button>
+        <p class="text-danger">{{this.registerError}}</p>
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="!this.ifLogin && !this.ifRegister">
+     <div class="form-inline">
+        <a class="navbar-brand" (click)="register($event)">Register</a>
+        <input (keyup)="onKeyLogin($event)" class="form-control inline" type="text" placeholder="Login">
+        <input (keyup)="onKeyPwLog($event)" class="form-control inline" type="password" placeholder="PassWord">
+        <button class="btn btn-outline-success inline" (click)="login($event)" type="submit">Login</button>
+        <p class="text-danger">{{this.loginError}}</p>
+      </div>
+    </ng-template>
     
     
-
   </nav>
 </div>
 
