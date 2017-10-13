@@ -1,5 +1,5 @@
 <div class="container">
- {{this.var}}
+
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
@@ -34,24 +34,21 @@
                     <td>{{boat.date}}</td>
                     <td>{{boat.owner}}</td>
                     <td>
-                       <button class="btn btn-outline-success" type="button" (click)="updateBoat(boat)">Update</button>
-                       <button class="btn btn-outline-success" type="button" (click)="deleteBoat(boat._id)">Delete</button>
+                       <button *ngIf="this.userName == boat.owner" class="btn btn-outline-success" type="button" (click)="updateBoat(boat)">Update</button>
+                       <button *ngIf="this.userName == boat.owner" class="btn btn-outline-success" type="button" (click)="deleteBoat(boat._id)">Delete</button>
                    </td>
               </ng-template>
          
       </tr>
-
-      <tr>
-        <td><input (keyup)="onKeyName($event)" class="form-control" type="text" placeholder="Name" value="{{this.inputName}}"></td>
-        <td><input (keyup)="onKeyDescri($event)" class="form-control" type="text" placeholder="Description" value="{{this.inputDescri}}"></td>
-        <td><input (keyup)="onKeyWeight($event)" class="form-control" type="text" placeholder="Weight" value="{{this.inputWeight}}"></td>
-        <td><input (keyup)="onKeyDate($event)" class="form-control" type="text" placeholder="Creation Date" value="{{this.inputCreationDate}}"></td>
-        <td>Me</td>
-        <td><button class="btn btn-outline-success" type="button" (click)="addBoat($event)">Add</button>
+      <tr>   
+        <td><input *ngIf="this.userName != ''" (keyup)="onKeyName($event)" class="form-control" type="text" placeholder="Name" value="{{this.inputName}}"></td>
+        <td><input *ngIf="this.userName != ''" (keyup)="onKeyDescri($event)" class="form-control" type="text" placeholder="Description" value="{{this.inputDescri}}"></td>
+        <td><input *ngIf="this.userName != ''" (keyup)="onKeyWeight($event)" class="form-control" type="text" placeholder="Weight" value="{{this.inputWeight}}"></td>
+        <td><input *ngIf="this.userName != ''" (keyup)="onKeyDate($event)" class="form-control" type="text" placeholder="Creation Date" value="{{this.inputCreationDate}}"></td>
+        <td><div *ngIf="this.userName != ''">{{this.userName}}</div></td>
+        <td><button *ngIf="this.userName != ''" class="btn btn-outline-success" type="button" (click)="addBoat($event)">Add</button>
          {{this.addError}}</td>
       </tr>
-
-
     </tbody>
   </table>
 </div>

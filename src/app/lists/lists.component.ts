@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input  } from '@angular/core';
 import { BoatService } from '../services/boat.service';
  
 
@@ -10,7 +10,7 @@ import { BoatService } from '../services/boat.service';
   styleUrls: ['./lists.component.css']
 })
 export class ListsComponent {
-  userName:string="Pierre";
+  @Input() userName:string;
 
   inputName:string = "";
   inputDescri:string = "";
