@@ -16,7 +16,7 @@
 </div>
 
 <div class="container">
-
+ {{this.var}}
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
@@ -30,13 +30,22 @@
     </thead>
     <tbody>
 
+      <tr *ngFor="let boat of boats">
+         <td>{{boat.name}}</td>
+         <td>{{boat.description}}</td>
+         <td>{{boat.wight}}</td>
+         <td>{{boat.date}}</td>
+         <td>{{boat.owner}}</td>
+         <td></td>
+      </tr>
+
       <tr>
         <td><input class="form-control" type="text" placeholder="Name"></td>
         <td><input class="form-control" type="text" placeholder="Description"></td>
         <td><input class="form-control" type="text" placeholder="Weight"></td>
         <td><input class="form-control" type="text" placeholder="Creation Date"></td>
         <td>Me</td>
-        <td><button class="btn btn-outline-success" type="submit">Add</button></td>
+        <td><button class="btn btn-outline-success" type="button" (click)="test()">Add</button></td>
       </tr>
 
 
