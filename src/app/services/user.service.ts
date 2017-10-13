@@ -22,7 +22,6 @@ export class UserService {
       headers: headers
     });
 
-    //return this.http.get(searchUrl, JSON.stringify({ userData: userData }), options).map(res => res.json());
     return this.http.get(searchUrl).map(res => res.json());
   }
 
