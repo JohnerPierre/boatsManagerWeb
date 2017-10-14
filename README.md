@@ -8,28 +8,28 @@
 
 ## Installation
 
-First need to setup the database, go to ./backend and lunch mongoDb with :
+First you need to setup the database, go to ./backend and launch mongoDb with : 
 ```
 mongod
 ```
-After need to install et lunch the Api for access to data:
+After this you need to install et launch the Api to access the data:
 ```
 npm install
 node server.js
 ```
-Optionally fill the Db with data with(dump folder):
+Optionally you can fill the Db with data with(dump folder):
 ```
 mongorestore
 ```
 Some users (Login: Jp; Pw: 12/Koko;12/Bill;123) and boats are available
 
-Secondly you need to install and lunch main application, go back to ./ and :
+Secondly you need to install and launch the main application, go back to ./ and :
 ```
 npm install
 npm start
 ```
 
-Now the site web is available at : http://localhost:4200/
+Now the website is available at : http://localhost:4200/
 
 Note : Db datas are available (./backEnd/api.js) at : http://localhost:5000/KEYWORD
 
