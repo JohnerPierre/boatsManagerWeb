@@ -12,7 +12,7 @@ First you need to setup the database, go to ./backend and launch mongoDb with :
 ```
 mongod
 ```
-After this you need to install et launch the Api to access the data:
+After this you need to install and launch the Api to access the data:
 ```
 npm install
 node server.js
