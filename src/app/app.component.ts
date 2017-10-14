@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { ListsComponent } from './lists/lists.component';
 
 import { UserService } from './services/user.service';
@@ -11,7 +11,7 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+   
   ifLogin:boolean=false;
   ifRegister:boolean=false;
 

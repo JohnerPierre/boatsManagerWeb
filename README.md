@@ -36,8 +36,11 @@ Note : Db datas are available (./backEnd/api.js) at : http://localhost:5000/KEYW
 ![alt text](https://i.imgur.com/KmATCrE.png)
 
 ## Running unit tests
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+TODO
 
-## Authors
+Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+
+## Author(s)
 
 Pierre Johner
