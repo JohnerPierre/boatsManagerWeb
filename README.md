@@ -33,6 +33,8 @@ Now the site web is available at : http://localhost:4200/
 
 Note : Db datas are available (./backEnd/api.js) at : http://localhost:5000/KEYWORD
 
+![alt text](https://i.imgur.com/KmATCrE.png)
+
 ## Running unit tests
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
